@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class DestoyByContact : MonoBehaviour {
 	public GameObject explosion;
@@ -18,11 +19,14 @@ public class DestoyByContact : MonoBehaviour {
 		if (other.tag == "Boundary")
 			return;
 		Instantiate (explosion, transform.position, transform.rotation);
-		if(other.tag == "Player")
-			Instantiate (playerExplosion, other.transform.position, other.transform.rotation);
+        if (other.tag == "Player") {
+            Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
+            gameController.GameOver();
+        }
+			
 		gameController.AddScore (scoreValue);
 
 		Destroy (other.gameObject);
 		Destroy (gameObject);
-	}
+    }
 }
