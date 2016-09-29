@@ -16,11 +16,9 @@ public class DestroyPlayer : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if(other.CompareTag("Boundary") || other.CompareTag("Collectible"))
-			return;
 
-		if (other.CompareTag("Enemy")) {
-			Debug.Log ("Inside destroy player me: " + gameObject.name + ", other: " + other.name);
+		if (other.CompareTag ("Enemy")) {
+			Debug.Log ("Inside destroy player me: " + gameObject.name + ", other: " + other.name+ ", other tag: " + other.tag);
 			gameController.DecreaseHP (hpValue);
 			Destroy (other.gameObject);
 			if (gameController.getHP () <= 0) {
@@ -29,7 +27,8 @@ public class DestroyPlayer : MonoBehaviour {
 				Destroy (gameObject);
 				return;
 			}
-		}
+		} else
+			return;
 			
 	}
 }

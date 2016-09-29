@@ -15,11 +15,10 @@ public class DestroyCollectible : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		Debug.Log ("Inside destroy collectible me: " + gameObject.name + ", other: " + other.name);
-		if(other.CompareTag("Boundary") || other.CompareTag("Enemy") || other.CompareTag("bolt"))
-			return;
 		if (other.CompareTag ("Player")) {
 			gameController.AddPoints (pointValue);
 			Destroy (gameObject);
-		}
+		} else
+			return;
 	}
 }

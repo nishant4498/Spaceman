@@ -16,24 +16,18 @@ public class DestoyByContact : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other)
 	{
-		if (other.CompareTag ("Boundary") || other.CompareTag ("Enemy") || other.CompareTag ("Collectible"))
-		{
-			return;
-		}
 
-		if (explosion != null)
-		{
-			Instantiate (explosion, transform.position, transform.rotation);
-		}
+//		if (explosion != null)
+//		{
+//			Instantiate (explosion, transform.position, transform.rotation);
+//		}
 
 		if (other.CompareTag ("bolt")) {
 			gameController.AddScore (scoreValue);
 			Destroy (other.gameObject);
 			Destroy (gameObject);
-		}
-
-		if (other.CompareTag ("Player")) {
-			Destroy (gameObject);
-		}
+			Instantiate (explosion, transform.position, transform.rotation);
+		} else
+			return;
 	}
 }
